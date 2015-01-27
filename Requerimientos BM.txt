@@ -1,0 +1,57 @@
+Alvarez Perez Arnold Alfonso
+
+//2 Labels 
+1-Para escribir el nombre de filas
+2-Para escribir el nombre de columnas
+
+
+
+//2 TextField 
+1-Para escribir el numero de filas
+2-Para escribir el numero de columnas
+
+
+
+//Un JButton para comenzar el juego
+
+
+
+
+//Una variable llamada mina
+
+
+
+//Un metodo para inicializar los valores de la matriz y genere un 10% de dificultad al juego
+
+
+
+//Un metodo que te regrese el valor de mina con true o false
+
+
+
+//Un metodo en la interfaz del buscaminas para que me genere cuando presione el boton comenzar los cuadros a presionar
+
+
+
+//Un metodo para inicializar las filas y las columnas del buscaminas
+1-En este metodo poner una variable para las filas y una para las columnas
+2-Un contador para las minas que existan
+3-Poner dentro 2 metodos for o la matriz
+
+
+
+//Un metodo que te avise cuando pierdas
+
+
+
+//Un metodo que te avise cuando ganes
+
+
+
+
+
+
+
+
+
+
