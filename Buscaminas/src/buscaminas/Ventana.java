@@ -15,22 +15,31 @@ import buscaminas.Cuadro;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author arnold
  */
-public class Ventana extends javax.swing.JFrame implements ActionListener {
+public class Ventana extends javax.swing.JFrame implements ActionListener, Runnable {
 
     
     int contadorMinas=0;//numero de minas
     int numeroCuadros=0;//numero de cuadros
     int contador=0;
     
+    Thread timer;
+    float tiempo;
+    
     /** Creates new form Ventana */
     public Ventana() {
         initComponents();
+        
+        tiempo=0;
+        timer = new Thread(this);
+        timer.start();
        
     }
     
@@ -70,6 +79,8 @@ public class Ventana extends javax.swing.JFrame implements ActionListener {
         filas = new javax.swing.JTextField();
         columnas = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        txtTiempo = new javax.swing.JTextField();
+        txtMina = new javax.swing.JTextField();
         cuadricula = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -98,6 +109,16 @@ public class Ventana extends javax.swing.JFrame implements ActionListener {
             }
         });
 
+        txtTiempo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtTiempo.setText("jTextField1");
+        txtTiempo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTiempoActionPerformed(evt);
+            }
+        });
+
+        txtMina.setText("jTextField2");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -110,7 +131,11 @@ public class Ventana extends javax.swing.JFrame implements ActionListener {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(columnas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
+                .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtMina, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -123,7 +148,9 @@ public class Ventana extends javax.swing.JFrame implements ActionListener {
                     .addComponent(jLabel2)
                     .addComponent(filas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(columnas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22))
         );
 
@@ -131,7 +158,7 @@ public class Ventana extends javax.swing.JFrame implements ActionListener {
         cuadricula.setLayout(cuadriculaLayout);
         cuadriculaLayout.setHorizontalGroup(
             cuadriculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         cuadriculaLayout.setVerticalGroup(
             cuadriculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,6 +205,10 @@ public class Ventana extends javax.swing.JFrame implements ActionListener {
         
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTiempoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTiempoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,5 +290,22 @@ public class Ventana extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtMina;
+    private javax.swing.JTextField txtTiempo;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run() {
+        while(true){
+        tiempo++;
+        
+        int minutos = (int)(tiempo/60f);
+        int segundos = (int)(tiempo % 60f);
+        txtTiempo.setText(""+minutos+":"+segundos);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
