@@ -31,7 +31,7 @@ public class Ventana extends javax.swing.JFrame implements ActionListener, Runna
     int contador=0;
     
     Thread timer;
-    float tiempo;
+    float tiempo=0;
     
     /** Creates new form Ventana */
     public Ventana() {
@@ -49,7 +49,7 @@ public class Ventana extends javax.swing.JFrame implements ActionListener, Runna
         if(temp2.lugarMinado())
         {
            
-            temp2.setIcon(new ImageIcon(getClass().getResource("carita.png")));
+            temp2.setIcon(new ImageIcon(getClass().getResource("troll.png")));
             javax.swing.JOptionPane.showMessageDialog(this, "Perdiste");
              
             this.contador=0;
@@ -79,8 +79,8 @@ public class Ventana extends javax.swing.JFrame implements ActionListener, Runna
         filas = new javax.swing.JTextField();
         columnas = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        txtTiempo = new javax.swing.JTextField();
-        txtMina = new javax.swing.JTextField();
+        txtTiempo = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         cuadricula = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -109,15 +109,9 @@ public class Ventana extends javax.swing.JFrame implements ActionListener, Runna
             }
         });
 
-        txtTiempo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtTiempo.setText("jTextField1");
-        txtTiempo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTiempoActionPerformed(evt);
-            }
-        });
+        txtTiempo.setText("tiempo");
 
-        txtMina.setText("jTextField2");
+        jLabel3.setText("Tiempo");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -131,27 +125,33 @@ public class Ventana extends javax.swing.JFrame implements ActionListener, Runna
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(columnas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtMina, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(46, 46, 46)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(txtTiempo)))
+                .addGap(49, 49, 49)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(filas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(columnas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(filas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(columnas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1)
+                            .addComponent(txtTiempo))
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(52, 52, 52))))
         );
 
         javax.swing.GroupLayout cuadriculaLayout = new javax.swing.GroupLayout(cuadricula);
@@ -197,6 +197,7 @@ public class Ventana extends javax.swing.JFrame implements ActionListener, Runna
     }//GEN-LAST:event_columnasActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
         iniciar();
         this.paintAll(this.getGraphics());
         
@@ -205,10 +206,6 @@ public class Ventana extends javax.swing.JFrame implements ActionListener, Runna
         
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void txtTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTiempoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTiempoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,9 +286,9 @@ public class Ventana extends javax.swing.JFrame implements ActionListener, Runna
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtMina;
-    private javax.swing.JTextField txtTiempo;
+    private javax.swing.JLabel txtTiempo;
     // End of variables declaration//GEN-END:variables
 
     @Override
